@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import ConditionalSection from './section/conditional'
+//import ConditionalSection from './section/conditional'
 import './App.css';
 
 class App extends Component {
