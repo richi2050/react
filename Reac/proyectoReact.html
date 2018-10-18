@@ -20,9 +20,39 @@
   <script type="text/babel">
   class Principal extends React.Component{
     render(){
-      return (<h2>Hola desde react</h2>)
+      return (
+        <div>
+          <h2>Hola desde react</h2>
+          <TextoDesde />
+        </div>
+        )
     }
   }
+
+  class TextoDesde extends React.Component {
+    constructor(){
+      super();
+      this.state ={
+        nombre: "Ricardo"
+      }
+    }
+
+    cambiarNombre(evento){
+      console.log(evento);
+      this.setState({nombre:evento.target.value });
+    }
+    render() {
+      return (
+        <div>
+          <h4>Hola { this.state.nombre }</h4>
+          <input type="text" onChange={this.cambiarNombre.bind(this)}/>
+          <h2> This is MyComponent </h2>
+        </div>
+
+      );
+    }
+  }
+
 
 
 
