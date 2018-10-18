@@ -1,84 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Proyecto con React</title>
-  <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
-	<script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js" ></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Proyecto con React</title>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
 </head>
+
 <body>
-  <h2>Proyecto React</h2>
-  <div id="root"></div>
+    <h2>Proyecto React</h2>
+    <div id="root"></div>
 
-  <!-- Creacion de componente -->
+    <!-- Creacion de componente -->
 
 
 
-  <script type="text/babel">
-  class Principal extends React.Component{
-    constructor(){
-      super()
-      this.state= {
-        numero : 0
-      }
-    }
-    masUno(num){
-      return this.state.numero ++;
-    }
-    render(){
-      return (
+    <script type="text/babel">
+        class Principal extends React.Component{
+            constructor(){
+                super()
+
+                }
+                masUno(num){
+                  this.setState({
+                    numero: this.state.numero + 1
+                  });
+                }
+
+                menosUno(num){
+                  this.setState({
+                    numero: this.state.numero - 1
+                  });
+                }
+                render(){
+                    return (
         <div>
-          <h2>Hola desde react</h2>
-          <TextoDesde />
-          <AumentarNumero numero={this.state.numero} />
+            <h2>Hola desde react</h2>
+            <TextoDesde />
+            <h1>{this.state.numero}</h1>
+            <AumentarNumero funAumentar={this.masUno.bind(this)}/>
+            <QuitarNumero funQuitar={ this.menosUno.bind(this)}/>
         </div>
-        )
-    }
-  }
-
-  class AumentarNumero extends React.Component {
-    render(){
-      return ( <div>{this.props.numero}</div>);
-    }
-  }
-
-  class TextoDesde extends React.Component {
-    constructor(){
-      super();
-      this.state ={
-        nombre: "Ricardo"
-      }
-    }
-
-    cambiarNombre(evento){
-      console.log(evento);
-      this.setState({nombre:evento.target.value });
-    }
-    render() {
-      return (
+        ) } }
+        class AumentarNumero extends React.Component { render(){ return (
         <div>
-          <h4>Hola { this.state.nombre }</h4>
-          <input type="text" onChange={this.cambiarNombre.bind(this)}/>
-          <h2> This is MyComponent </h2>
-        </div>
+            <p>
+                <br/>
+                <button onClick={ this.props.funAumentar }>Aumentar</button>
+            </p>
+        </div>); } }
 
-      );
-    }
-  }
+        class QuitarNumero extends React.Component {
+          render(){
+            return (
+              <div>
+                <p>
+                  <button onClick={ this.props.funQuitar }> Menos </button>
+                </p>
+              </div>)
+          }
+        }
 
 
+        class TextoDesde extends React.Component {
+            constructor(){
+                super();
+                this.state ={
+                    nombre: "Ricardo" }
+                    }
+                    cambiarNombre(evento){
+                        console.log(evento);
+                        this.setState({nombre:evento.target.value });
+                        }
+                        render() {
+                            return (
+                        <div>
+                            <h4>Hola { this.state.nombre }</h4>
+                            <input type="text" onChange={this.cambiarNombre.bind(this)}/>
+                            <h2> This is MyComponent </h2>
+                        </div>
+
+        ); } } ReactDOM.render(
+        <Principal />, document.getElementById('root') );
 
 
-  ReactDOM.render(
-    <Principal />,
-    document.getElementById('root')
-  );
-
-
-  </script>
+    </script>
 
 </body>
+
 </html>
